@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Components Example</title>
+    <style>
+      h1 {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Selamlar</h1>
+    <ex-card title="Example Title" desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sodales magna elit, a accumsan felis facilisis in. "></ex-card>
+    <ex-card id="test" title="Vestibulum commodo pulvinar lobortis." desc="Sed efficitur egestas sapien, eget ullamcorper magna lobortis sed. Maecenas at dictum orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at quam sollicitudin, ultricies turpis ut, gravida nibh. Phasellus et blandit velit. In pellentesque eros at tincidunt bibendum."></ex-card>
+    <ex-input placeholder="Testing"/>
+    <ex-button text="Click Me" onclick="hello()" disabled />
+    <script src="./dist/index.js"></script>
+    <script>
+      function changeTestCard() {
+        const testCard = document.getElementById("test");
+        testCard.setAttribute("title", "Hello!");
+      }
+
+      function hello() {        
+        changeTestCard();
+      }
+    </script>
+  </body>
+</html>
