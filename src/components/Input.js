@@ -3,22 +3,6 @@ class Input extends HTMLElement{
         return ["type", "value", "placeholder"]
     }
 
-    get type(){
-        return this.getAttribute("type");
-    }
-
-    get placeholder(){
-        return this.getAttribute("placeholder");
-    }
-
-    get value(){
-        return this.getAttribute('value');
-    }
-
-    set value(value){
-        this.setAttribute('value', value);
-    }
-
     constructor(){
         super();
 
