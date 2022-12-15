@@ -1,22 +1,6 @@
 import { DomUtilty } from "../utilty/dom.utility";
 
 class Button extends HTMLElement {
-  static get observedAttributes() {
-    return ["text"];
-  }
-
-  get text() {
-    return this.getAttribute("text");
-  }
-
-  set text(val) {
-    if (val) {
-      this.setAttribute("text", val);
-    } else {
-      this.removeAttribute("text");
-    }
-  }
-
   constructor() {
     super();
 
@@ -31,6 +15,10 @@ class Button extends HTMLElement {
       button: this.shadowRoot.querySelector(".ex-button"),
       text: this.shadowRoot.querySelector("span"),
     };
+  }
+
+  static get observedAttributes() {
+    return ["text"];
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -55,6 +43,10 @@ class Button extends HTMLElement {
                 background-color: #487eb0;
                 color: #fff;    
                 transition: 200ms all ease;
+            }
+
+            .ex-button > * {
+                user-select: none;
             }
             
             .ex-button span{
