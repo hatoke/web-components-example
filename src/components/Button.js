@@ -1,53 +1,53 @@
-import { DomUtilty } from '../utilty/dom.utility'
+import { DomUtilty } from "../utilty/dom.utility";
 
 class Button extends HTMLElement {
-    static get observedAttributes() {
-        return ["text"];
+  static get observedAttributes() {
+    return ["text"];
+  }
+
+  get text() {
+    return this.getAttribute("text");
+  }
+
+  set text(val) {
+    if (val) {
+      this.setAttribute("text", val);
+    } else {
+      this.removeAttribute("text");
     }
+  }
 
-    get text() {
-        return this.getAttribute("text");
-    }
+  constructor() {
+    super();
 
-    set text(val) {
-        if (val) {
-            this.setAttribute("text", val);
-        } else {
-            this.removeAttribute("text");
-        }
-    }
+    const domUtilty = new DomUtilty();
 
-    constructor() {
-        super();
+    this.attachShadow({ mode: "open" });
+    const render = this.render();
+    const template = domUtilty.newElement(render);
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-        const domUtilty = new DomUtilty();
+    this.state = {
+      button: this.shadowRoot.querySelector(".ex-button"),
+      text: this.shadowRoot.querySelector("span"),
+    };
+  }
 
-        this.attachShadow({ mode: "open" });
-        const render = this.render();
-        const template = domUtilty.newElement(render);
-        this.shadowRoot.appendChild(template.content.cloneNode(true));
+  attributeChangedCallback(name, oldValue, newValue) {
+    this.state[name].innerText = newValue;
+  }
 
-        this.state = {
-            button: this.shadowRoot.querySelector(".ex-button"),
-            text: this.shadowRoot.querySelector("span")
-        };
-    }
-
-    attributeChangedCallback(name, oldValue, newValue) {
-        this.state[name].innerText = newValue;
-    }
-
-
-    render() {
-        return `
+  render() {
+    return `
             <div class="ex-button">    
                 <span></span>
             </div>
             
             <style>
             .ex-button{
-                padding: 15px;
-                display: flex;
+                width: auto;
+                padding: 10px;
+                display: inline-flex;
                 align-items: center;
                 justify-content: center;
                 border-radius: 3px;
@@ -65,8 +65,8 @@ class Button extends HTMLElement {
                 background-color: #40739e !important;
             }
             </style>
-        `
-    }
+        `;
+  }
 }
 
 window.customElements.define("ex-button", Button);
